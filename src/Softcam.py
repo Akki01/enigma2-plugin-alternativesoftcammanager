@@ -68,10 +68,23 @@ def stopcam(cam):
 		pass
 
 
+def __createdir(list):
+	dir = ""
+	for line in list[1:].split("/"):
+		dir += "/" + line
+		if not os.path.exists(dir):
+			try:
+				os.mkdir(dir)
+			except:
+				print "[Alternative SoftCam Manager] Failed to mkdir", dir
+
+
 def checkconfigdir():
 	if not os.path.exists(config.plugins.AltSoftcam.camconfig.value):
-		config.plugins.AltSoftcam.camconfig.value = "/etc/tuxbox/config/oscam"
+		__createdir("/var/keys")
+		config.plugins.AltSoftcam.camconfig.value = "/var/keys"
 		config.plugins.AltSoftcam.camconfig.save()
 	if not os.path.exists(config.plugins.AltSoftcam.camdir.value):
-		config.plugins.AltSoftcam.camdir.value = "/usr/bin"
+		__createdir("/var/emu")
+		config.plugins.AltSoftcam.camdir.value = "/var/emu"
 		config.plugins.AltSoftcam.camdir.save()
