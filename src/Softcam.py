@@ -82,9 +82,9 @@ def __createdir(list):
 def checkconfigdir():
 	if not os.path.exists(config.plugins.AltSoftcam.camconfig.value):
 		__createdir("/var/keys")
-		config.plugins.AltSoftcam.camconfig.value = "/var/keys"
+		config.plugins.AltSoftcam.camconfig.value = "/etc/tuxbox/config/oscam"
 		config.plugins.AltSoftcam.camconfig.save()
 	if not os.path.exists(config.plugins.AltSoftcam.camdir.value):
 		__createdir("/var/emu")
-		config.plugins.AltSoftcam.camdir.value = "/var/emu"
+		config.plugins.AltSoftcam.camdir.value = "/usr/bin"
 		config.plugins.AltSoftcam.camdir.save()
